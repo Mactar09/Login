@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+                        background: rgb(226,251,63);
+background: radial-gradient(circle, rgba(226,251,63,1) 0%, rgba(232,155,8,1) 100%);
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .btn {
+            background-color: #25c732;
+            border-radius:200px;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            border-radius:200px;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" id="firstname" name="firstname">
+                <span class="error" id="firstnameError">Ce champ est obligatoire</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <span class="error" id="emailError">Ce champ est obligatoire</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password">
+                <span class="error" id="passwordError">Ce champ est obligatoire</span>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmer le mot de passe</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+                <span class="error" id="confirmPasswordError">Ce champ est obligatoire</span>
+            </div>
+            <button type="submit" class="btn">Inscription</button>
+        </form>
+        <p>Déjà un compte ? <a href="https://mactar09.github.io/Sing-in/">Connectez-vous ici</a></p>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            const firstname = document.getElementById('firstname');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const firstnameError = document.getElementById('firstnameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            if (firstname.value.trim() === '') {
+                firstnameError.style.display = 'block';
+                isValid = false;
+            } else {
+                firstnameError.style.display = 'none';
+            }
+
+            if (email.value.trim() === '') {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            if (password.value.trim() === '') {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            if (confirmPassword.value.trim() === '') {
+                confirmPasswordError.style.display = 'block';
+                isValid = false;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+
+            if (password.value.trim() !== '' && confirmPassword.value.trim() !== '' && password.value !== confirmPassword.value) {
+                confirmPasswordError.textContent = 'Les mots de passe ne correspondent pas';
+                confirmPasswordError.style.display = 'block';
+                isValid = false;
+            } else if (password.value === confirmPassword.value) {
+                confirmPasswordError.textContent = 'Ce champ est obligatoire';
+            }
+
+            if (isValid) {
+                alert('Vous recever bientôtt un message de confirmation au votre email!');
+            }
+        });
+    </script>
+</body>
+</html>
